@@ -29,22 +29,21 @@ sue_attributes = [
 
 greater = ["cats", "trees"]
 fewer = ["pomeranians", "goldfish"]
-wrong_keys = ["cats", "trees", "pomeranians", "goldfish"]
-# good_keys = [i for i in sue_attributes if i not in wrong_keys]
+good_keys = [i for i in aunt_sue.keys() if i not in greater + fewer]
 
 
-def parse_line(line, part2=False):
+def parse_line(line):
     tmp = line.strip().replace(":", "").replace(",", "").split(" ")
     sue_id = int(tmp[1])
-    attributes = {} if not part2 else {i: 1 for i in sue_attributes}
+    attributes = {}
     for index in range(2, len(tmp) - 1, 2):
         attribute, count = tmp[index], int(tmp[index + 1])
         attributes.update({attribute: count})
     return {sue_id: attributes}
 
 
-def create_dict(lines, part2=False):
-    s = [parse_line(line, part2) for line in lines]
+def create_dict(lines):
+    s = [parse_line(line) for line in lines]
     sues_dict = {}
     [sues_dict.update(i) for i in s]
     return sues_dict
@@ -67,14 +66,13 @@ if __name__ == "__main__":
                 aunt = key
         print("part 1:", aunt)
 
-        aunts = create_dict(lines, True)
-        aunts = {i: j for i, j in aunts.items() if filter_aunt(j)}
-        [aunt_sue.pop(i) for i in wrong_keys]
         aunt = 0
         for key, value in aunts.items():
-            print(value)
-            if aunt_sue.items() >= value.items():
-                aunt = key
+            for att_key, att_value in value.items():
+                if att_key in good_keys and att_value == aunt_sue[att_key]:
+                    if att_key in greater and att_value < aunt_sue[att_key]:
+                        print(key)
+                    # print(key)
+                    # aunt = key
 
         print("part 2:", aunt)
-

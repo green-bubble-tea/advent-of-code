@@ -8,7 +8,7 @@ if __name__ == "__main__":
         vessels_lengths = []
         vessel_count = 0
         for i in range(len(vessels) + 1):
-            vessels_combinations = list(filter(lambda i: sum(i) == target, combinations(vessels, i)))
+            vessels_combinations = list(filter(lambda v: sum(v) == target, combinations(vessels, i)))
             if vessels_combinations:
                 vessels_lengths += list(map(len, vessels_combinations))
             vessel_count += len(vessels_combinations)
