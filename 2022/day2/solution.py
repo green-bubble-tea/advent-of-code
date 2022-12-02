@@ -6,12 +6,7 @@ if __name__ == "__main__":
     losing_pairs = [("A", "Z"), ("B", "X"), ("C", "Y")]
 
     def calculate_result(game_round):
-        points = {
-            "X": 1,  # rock
-            "Y": 2,  # paper
-            "Z": 3  # scissors
-        }
-        result = points[game_round[1]]
+        result = dict(X=1, Y=2, Z=3)[game_round[1]]
         if game_round in winning_pairs:
             result += 6
         elif game_round in ties:
