@@ -15,4 +15,4 @@ if __name__ == "__main__":
                     first = index
                     found = True
             index += 1
-        print("part 2:", first)
+        print("part 2:", first + 1)
