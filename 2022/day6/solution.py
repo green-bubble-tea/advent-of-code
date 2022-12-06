@@ -17,4 +17,4 @@ if __name__ == "__main__":
     with codecs.open("input.txt") as input_file:
         message = input_file.read().strip()
         print("part 1:", process_marker(message, 4))
-        print("part 1:", process_marker(message, 14))
+        print("part 2:", process_marker(message, 14))
